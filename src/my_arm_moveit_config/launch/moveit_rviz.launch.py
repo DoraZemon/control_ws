@@ -28,9 +28,6 @@ def generate_launch_description():
             moveit_config.joint_limits,
             moveit_config.planning_pipelines,
         ],
-        remappings=[
-            ("/display_planned_path", "/display_planned_path_coupled"),
-        ],
     )
 
     return LaunchDescription([rviz_node])

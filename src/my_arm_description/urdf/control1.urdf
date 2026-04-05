@@ -219,6 +219,52 @@
       velocity="1" />
   </joint>
   <link
+    name="link4_coupler" />
+  <joint
+    name="joint4_from_joint2"
+    type="revolute">
+    <origin
+      xyz="0.08 0.13856 0.017"
+      rpy="1.5708 0 -2.2789" />
+    <parent
+      link="link3" />
+    <child
+      link="link4_coupler" />
+    <axis
+      xyz="0 -1 0" />
+    <mimic
+      joint="joint2"
+      multiplier="1.0"
+      offset="0.0" />
+    <limit
+      lower="-6.28318"
+      upper="6.28318"
+      effort="100"
+      velocity="2" />
+  </joint>
+  <joint
+    name="joint4_from_joint3"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link4_coupler" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 -1 0" />
+    <mimic
+      joint="joint3"
+      multiplier="-1.0"
+      offset="0.0" />
+    <limit
+      lower="-6.28318"
+      upper="6.28318"
+      effort="100"
+      velocity="2" />
+  </joint>
+  <link
     name="link4">
     <inertial>
       <origin
@@ -258,24 +304,6 @@
       </geometry>
     </collision>
   </link>
-  <joint
-    name="joint4"
-    type="revolute">
-    <origin
-      xyz="0.08 0.13856 0.017"
-      rpy="1.5708 0 -2.2789" />
-    <parent
-      link="link3" />
-    <child
-      link="link4" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-3.14"
-      upper="3.14"
-      effort="100"
-      velocity="1" />
-  </joint>
   <link
     name="link5">
     <inertial>

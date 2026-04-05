@@ -12,15 +12,12 @@ def generate_launch_description():
     # robot_description（URDF）由 MoveItConfigsBuilder 提供
     robot_description = moveit_config.robot_description
 
-    # 1) GUI 发布到 /joint_states_raw（通过 remap）
+    # 1) GUI 发布到 /joint_states
     jsp_gui = Node(
         package="joint_state_publisher_gui",
         executable="joint_state_publisher_gui",
         name="joint_state_publisher_gui",
         output="screen",
-        remappings=[
-            ("/joint_states", "/joint_states_raw"),
-        ],
     )
 
     # 2) robot_state_publisher 订阅 /joint_states（默认就是这个）

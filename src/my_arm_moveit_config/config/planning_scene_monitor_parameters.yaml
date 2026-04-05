@@ -1,0 +1,12 @@
+publish_planning_scene: true
+publish_geometry_updates: true
+publish_state_updates: true
+publish_transforms_updates: true
+publish_robot_description: true
+publish_robot_description_semantic: true
+
+planning_scene_monitor_options:
+  name: planning_scene_monitor
+  robot_description: robot_description
+  joint_state_topic: /joint_states
+  wait_for_initial_state_timeout: 10.0

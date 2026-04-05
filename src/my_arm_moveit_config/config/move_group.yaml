@@ -1,0 +1,5 @@
+allow_trajectory_execution: true
+monitor_dynamics: false
+capabilities: ""
+disable_capabilities: ""
+publish_robot_description_semantic: true

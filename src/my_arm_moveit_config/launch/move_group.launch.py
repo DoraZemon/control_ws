@@ -1,31 +1,40 @@
+import os
+from pathlib import Path
+
+from ament_index_python.packages import get_package_share_directory
+from launch_param_builder import load_yaml
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from moveit_configs_utils import MoveItConfigsBuilder
 
 
 def generate_launch_description():
+    pkg_share = get_package_share_directory("my_arm_moveit_config")
+
     moveit_config = (
         MoveItConfigsBuilder("control1", package_name="my_arm_moveit_config")
+        .planning_pipelines(pipelines=["ompl"])
+        .trajectory_execution(
+            file_path="config/moveit_controllers.yaml",
+            moveit_manage_controllers=False,
+        )
         .to_moveit_configs()
     )
 
-    # move_group 需要的参数集合（URDF/SRDF/kinematics/planning pipelines/limits等）
-    params = []
-    params.append(moveit_config.robot_description)
-    params.append(moveit_config.robot_description_semantic)
-    params.append(moveit_config.robot_description_kinematics)
-    params.append(moveit_config.planning_pipelines)
-    params.append(moveit_config.joint_limits)
+    params = [
+        moveit_config.to_dict(),
+        load_yaml(Path(pkg_share) / "config" / "move_group.yaml"),
+        load_yaml(
+            Path(pkg_share) / "config" / "planning_scene_monitor_parameters.yaml"
+        ),
+        load_yaml(Path(pkg_share) / "config" / "trajectory_execution.yaml"),
+    ]
 
     move_group_node = Node(
         package="moveit_ros_move_group",
         executable="move_group",
         output="screen",
         parameters=params,
-        remappings=[
-            # 关键：让 move_group 用独立关节状态作为 current state
-            ("/joint_states", "/joint_states_moveit"),
-        ],
     )
 
     return LaunchDescription([move_group_node])
