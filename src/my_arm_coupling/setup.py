@@ -27,6 +27,8 @@ setup(
         	'joint_coupler = my_arm_coupling.joint_coupler:main',
         	'display_trajectory_coupler = my_arm_coupling.display_trajectory_coupler:main',
         	'joint_state_filter = my_arm_coupling.joint_state_filter:main',
+            'motion_plan_request_coupler = my_arm_coupling.motion_plan_request_coupler:main',
+            'move_group_action_coupler = my_arm_coupling.move_group_action_coupler:main',
         ],
     },
 )

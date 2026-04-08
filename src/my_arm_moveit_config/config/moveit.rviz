@@ -91,10 +91,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          link4_coupler:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           link5:
             Alpha: 1
             Show Axes: false
@@ -181,10 +177,6 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          link4_coupler:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
           link5:
             Alpha: 1
             Show Axes: false
